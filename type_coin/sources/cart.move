@@ -1,10 +1,10 @@
-module my_coin::my_coin {
+module cart::cart {
     use sui::coin::{Self, TreasuryCap};
 
-    public struct MY_COIN has drop {}
+    public struct Cart has drop {}
 
     #[allow(lint(share_owned))]
-    fun init(witness: MY_COIN, ctx: &mut TxContext) {
+    fun init(witness: Cart, ctx: &mut TxContext) {
         let (treasury, metadata) = coin::create_currency(witness, 6, b"MY_COIN", b"", b"", option::none(), ctx);
         transfer::public_share_object(metadata);
         transfer::public_transfer(treasury, ctx.sender())
