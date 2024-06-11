@@ -1,4 +1,4 @@
-/*
+
 #[test_only]
 module test_demo::test_demo_tests {
     // uncomment this line to import the module
@@ -16,4 +16,3 @@ module test_demo::test_demo_tests {
         abort ENotImplemented
     }
 }
-*/
