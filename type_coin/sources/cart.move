@@ -1,25 +1,22 @@
-module cart::cart {
-    use sui::coin::{self, Coin, TreasuryCap};
-    use sui::tx_context::TxContext;
-    use sui::url::Url;
+module examples::my_coin {
+    use sui::coin::{Self, TreasuryCap};
 
-    public struct CART has drop {}
+    public struct MY_COIN has drop {}
 
-    fun init(otw: CART, ctx: &mut TxContext){
-        let initial_supply = 500_000_000_000;  // Assume a non-zero initial supply
-        let icon_url = Url::create("https://example.com/coin.jpg");  // Properly create a URL
+    #[allow(lint(share_owned))]
+    fun init(witness: MY_COIN, ctx: &mut TxContext) {
+        let (treasury, metadata) = coin::create_currency(witness, 6, b"MY_COIN", b"", b"", option::none(), ctx);
+        transfer::public_share_object(metadata);
+        transfer::public_transfer(treasury, ctx.sender())
+    }
 
-        let (treasury_cap, metadata) = coin::create_currency<CART>(
-            otw,
-            9,
-            b"DAIWEE",
-            b"DAIWEE Coin",
-            b"DAIWEE good Coin",
-            option::some(icon_url),
-            ctx
-        );
-
-        transfer::public_transfer(treasury_cap, ctx.sender());
-        transfer::public_freeze_object(metadata);
+    public fun mint(
+        treasury_cap: &mut TreasuryCap<MY_COIN>, 
+        amount: u64, 
+        recipient: address, 
+        ctx: &mut TxContext,
+    ) {
+        let coin = coin::mint(treasury_cap, amount, ctx);
+        transfer::public_transfer(coin, recipient)
     }
 }
