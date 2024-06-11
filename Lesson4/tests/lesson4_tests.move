@@ -33,7 +33,7 @@ module lesson4::lesson4_tests {
         ts::next_tx(s, attacker);
         {
             let bag_ids = ts::ids_for_sender<FortuneBag>(s);
-            assert!(!bag_ids.is_empty(), 0);
+            assert!(!bag_ids.is_empty(),"This is a Error");
         };
 
         ts::end(scenario_val);
