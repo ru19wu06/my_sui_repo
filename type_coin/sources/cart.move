@@ -11,7 +11,7 @@ module cart::cart {
     }
 
     public fun mint(
-        treasury_cap: &mut TreasuryCap<MY_COIN>, 
+        treasury_cap: &mut TreasuryCap<Cart>, 
         amount: u64, 
         recipient: address, 
         ctx: &mut TxContext,
