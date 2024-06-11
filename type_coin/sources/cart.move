@@ -1,16 +1,16 @@
-module cart::cart {
+module dnknow::dnknow {
     use sui::coin::{Self, TreasuryCap};
 
-    public struct CART has drop {}
+    public struct DZKNOW has drop {}
 
-    fun init(witness: CART, ctx: &mut TxContext) {
-        let (treasury, metadata) = coin::create_currency(witness, 6, b"MY_COIN", b"", b"", option::none(), ctx);
+    fun init(witness: DZKNOW, ctx: &mut TxContext) {
+        let (treasury, metadata) = coin::create_currency(witness, 6, b"Super DZ", b"DZ", b"super dz coin", option::none(), ctx);
         transfer::public_share_object(metadata);
         transfer::public_transfer(treasury, ctx.sender())
     }
 
     public fun mint(
-        treasury_cap: &mut TreasuryCap<CART>, 
+        treasury_cap: &mut TreasuryCap<DZKNOW>, 
         amount: u64, 
         recipient: address, 
         ctx: &mut TxContext,
