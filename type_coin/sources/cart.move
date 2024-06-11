@@ -1,4 +1,4 @@
-module examples::my_coin {
+module my_coin::my_coin {
     use sui::coin::{Self, TreasuryCap};
 
     public struct MY_COIN has drop {}
