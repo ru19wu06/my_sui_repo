@@ -1,4 +1,4 @@
-module dnknow::dnknow {
+module dzknow::dzknow {
     use sui::coin::{Self, TreasuryCap};
 
     public struct DZKNOW has drop {}
